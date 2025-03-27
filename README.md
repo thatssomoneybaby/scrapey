@@ -30,13 +30,13 @@ brew install tesseract
 brew install poppler
 ```
 
-3. Download the latest release from the [Releases](https://github.com/yourusername/scrapey/releases) page.
+3. Download the latest release from the [Releases](https://github.com/thatssomoneybaby/scrapey/releases) page.
 
 ## Development Setup
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/scrapey.git
+git clone https://github.com/thatssomoneybaby/scrapey.git
 cd scrapey
 ```
 
