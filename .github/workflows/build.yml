@@ -52,19 +52,27 @@ jobs:
         
         echo "Contents of dist directory:"
         ls -la dist/
+        echo "Contents of dist/scrapey directory:"
+        ls -la dist/scrapey/
+        echo "Contents of dist/scrapey.app directory:"
+        ls -la dist/scrapey.app/
     
     - name: Verify build output
       run: |
+        echo "Checking build output structure:"
+        ls -la dist/
+        
         if [ ! -d "dist/scrapey.app" ]; then
           echo "Error: dist/scrapey.app not found"
           echo "Contents of dist directory:"
           ls -la dist/
           exit 1
         fi
-        if [ ! -f "dist/scrapey" ]; then
-          echo "Error: dist/scrapey not found"
-          echo "Contents of dist directory:"
-          ls -la dist/
+        
+        if [ ! -f "dist/scrapey/scrapey" ]; then
+          echo "Error: dist/scrapey/scrapey not found"
+          echo "Contents of dist/scrapey directory:"
+          ls -la dist/scrapey/
           exit 1
         fi
     
