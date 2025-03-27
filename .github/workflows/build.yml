@@ -29,17 +29,36 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
     
+    - name: List directory contents
+      run: |
+        ls -la
+        echo "Contents of scrapey directory:"
+        ls -la scrapey/
+    
     - name: Build application
       run: |
         pyinstaller scrapey.spec
+        echo "Contents of dist directory:"
+        ls -la dist/
     
     - name: Create release
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/Scrapey.app
+          dist/scrapey.app
+          dist/scrapey
         draft: true
         prerelease: false
+        tag_name: v1.0.0
+        name: Release v1.0.0
+        body: |
+          Initial release of Scrapey
+          
+          Features:
+          - PDF text extraction
+          - OCR support
+          - Web page text extraction
+          - Modern Qt-based GUI
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
