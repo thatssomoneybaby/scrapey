@@ -37,10 +37,12 @@ env/
 .LSOverride
 
 # Build artifacts
-*.spec
 build/
 dist/
 *.app/
+# Ignore all spec files except scrapey.spec
+*.spec
+!scrapey.spec
 
 # Logs
 *.log
