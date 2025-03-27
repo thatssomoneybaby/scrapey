@@ -31,15 +31,31 @@ jobs:
     
     - name: List directory contents
       run: |
+        echo "Root directory contents:"
         ls -la
         echo "Contents of scrapey directory:"
         ls -la scrapey/
+        echo "Contents of resources directory:"
+        ls -la resources/
     
     - name: Build application
       run: |
         pyinstaller scrapey.spec
         echo "Contents of dist directory:"
         ls -la dist/
+        echo "Contents of build directory:"
+        ls -la build/
+    
+    - name: Verify build output
+      run: |
+        if [ ! -d "dist/scrapey.app" ]; then
+          echo "Error: dist/scrapey.app not found"
+          exit 1
+        fi
+        if [ ! -f "dist/scrapey" ]; then
+          echo "Error: dist/scrapey not found"
+          exit 1
+        fi
     
     - name: Create release
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'

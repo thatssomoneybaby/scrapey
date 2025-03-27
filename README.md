@@ -61,7 +61,7 @@ python -m scrapey.main
 To build the application from source:
 
 ```bash
-pyinstaller Scrapey.spec
+pyinstaller scrapey.spec
 ```
 
 The built application will be available in the `dist` directory.
