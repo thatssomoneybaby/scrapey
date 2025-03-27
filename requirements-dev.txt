@@ -1,0 +1,9 @@
+-r requirements.txt
+pytest>=7.4.0
+pytest-qt>=4.2.0
+black>=23.7.0
+flake8>=6.1.0
+mypy>=1.5.1
+build>=1.0.0
+twine>=4.0.0
+pyinstaller>=6.3.0 
