@@ -40,6 +40,9 @@ jobs:
     
     - name: Build application
       run: |
+        pwd
+        echo "Current directory contents:"
+        ls -la
         pyinstaller scrapey.spec
         echo "Contents of dist directory:"
         ls -la dist/
