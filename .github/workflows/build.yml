@@ -31,7 +31,7 @@ jobs:
     
     - name: Build application
       run: |
-        pyinstaller Scrapey.spec
+        pyinstaller scrapey.spec
     
     - name: Create release
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
