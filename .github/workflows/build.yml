@@ -29,34 +29,42 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
     
-    - name: List directory contents
+    - name: Verify required files
       run: |
-        echo "Root directory contents:"
-        ls -la
-        echo "Contents of scrapey directory:"
-        ls -la scrapey/
-        echo "Contents of resources directory:"
-        ls -la resources/
+        echo "Checking required files:"
+        ls -la scrapey.spec
+        ls -la resources/scrapey.icns
+        ls -la scrapey/main.py
+        ls -la scrapey/settings.ini
+    
+    - name: Clean previous builds
+      run: |
+        rm -rf build dist
+        mkdir -p dist
     
     - name: Build application
       run: |
-        pwd
-        echo "Current directory contents:"
-        ls -la
-        pyinstaller scrapey.spec
+        echo "Building with basic PyInstaller command first:"
+        pyinstaller --clean --noconfirm scrapey/main.py --name scrapey --windowed --icon resources/scrapey.icns
+        
+        echo "If basic build succeeds, try full spec file:"
+        pyinstaller --clean --noconfirm scrapey.spec
+        
         echo "Contents of dist directory:"
         ls -la dist/
-        echo "Contents of build directory:"
-        ls -la build/
     
     - name: Verify build output
       run: |
         if [ ! -d "dist/scrapey.app" ]; then
           echo "Error: dist/scrapey.app not found"
+          echo "Contents of dist directory:"
+          ls -la dist/
           exit 1
         fi
         if [ ! -f "dist/scrapey" ]; then
           echo "Error: dist/scrapey not found"
+          echo "Contents of dist directory:"
+          ls -la dist/
           exit 1
         fi
     
